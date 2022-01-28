@@ -7,13 +7,12 @@
 
 ## Основные правила игры
 
-<img src="https://a.radikal.ru/a01/2201/9b/402ee0272bf5.png" width="100%">
+<img src="https://github.com/etokosmo/Shakal-LITE/blob/main/static/img/readme/rules.png" width="100%">
 <p>Чтобы более подробно изучить правила данной игры, есть специальный раздел в меню под именованием "Rules"</p>
 
 ## Обозначение клеток
 
-
-<img src="https://b.radikal.ru/b01/2201/10/ca5226a8ab3c.png" width="100%">
+<img src="https://github.com/etokosmo/Shakal-LITE/blob/main/static/img/readme/cards.png" width="100%">
 
 ## Игра
 
