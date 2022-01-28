@@ -1,0 +1,228 @@
+{%extends "base.html"%}
+
+{%block info %}
+<!-- header -->
+<header class="header">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="description">
+            <h1>
+                Приветсвую!
+                <p>
+                    Предлагаю тебе ознакомиться с моим первым проектом на Python Flask.
+                    Это игра наподобие настольной игры <b>"Шакал"</b>. Только более облегченная версия.</p>
+                <form action="{{ url_for('count', _anchor='about') }}">
+                    <button class="btn btn-outline-secondary">Узнать больше</button>
+                </form>
+            </h1>
+        </div>
+    </div>
+</header>
+
+<!-- about -->
+<section class="about" id="about">
+    <div class="main_container">
+        <div class="cards-h2">
+            <h2>Основные правила игры</h2>
+        </div>
+        <div class="post-wrap container">
+            <div class="row">
+                <div class="post-item col-xl-4 col-sm-12">
+                    <div class="post-item-wrap">
+                        <a href="" class="post-link">
+                            <h3 class="post-title">Цель игры</h3>
+                            <p class="post-content">Смысл игры очень простой. Надо собрать 3 мешочка с золотом раньше
+                                других.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-sm-12">
+                    <div class="post-item-wrap">
+                        <a href="" class="post-link">
+                            <h3 class="post-title">Ход игры</h3>
+                            <p class="post-content">Игроки ходят поочередно на одну клетку в любую сторону относительно
+                                своего
+                                местоположения на поле.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-sm-12">
+                    <div class="post-item-wrap">
+                        <a href="" class="post-link">
+                            <h3 class="post-title">Поле</h3>
+                            <p class="post-content">Поле представлено 25 клетками. У каждой клетки есть свое
+                                обозначение,
+                                которое открывается после того как на неё встали.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- cards -->
+<section>
+    <div class="main_container">
+        <div class="cards-h2">
+            <h2>Обозначение клеток</h2>
+        </div>
+        <div class="post-wrap container">
+            <div class="row">
+                <div class="post-item col-xl-4 col-md-6 col-xs-12">
+                    <div class="item-content">
+                        <div class="item-icon">
+                            <img src="/static/img/closed.jpg" alt="">
+                        </div>
+                        <div class="item-body">
+                            <h3>Неизведанное</h3>
+                            <p>Неизведанная клетка. Чтобы узнать что скрывается под ней, необходимо вступить на неё.</p>
+                        </div>
+                        <div class="item-footer">
+                            <a href="{{ url_for('rules', _anchor='cell_value') }}"
+                                class="link"><span>Подробнее</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-md-6 col-xs-12">
+                    <div class="item-content">
+                        <div class="item-icon">
+                            <img src="/static/img/start.jpg" alt="">
+                        </div>
+                        <div class="item-body">
+                            <h3>Старт</h3>
+                            <p>Начальная клетка каждого участника. При убийстве вас отбрасывает на неё.</p>
+                        </div>
+                        <div class="item-footer">
+                            <a href="{{ url_for('rules', _anchor='cell_value') }}"
+                                class="link"><span>Подробнее</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-md-6 col-xs-12">
+                    <div class="item-content">
+                        <div class="item-icon">
+                            <img src="/static/img/empty.gif" alt="">
+                        </div>
+                        <div class="item-body">
+                            <h3>Пустота</h3>
+                            <p>Вступив на эту клетку, вы предвещаете какого-то события. Но ничего не происходит. Это
+                                пустая
+                                клетка.
+                            </p>
+                        </div>
+                        <div class="item-footer">
+                            <a href="{{ url_for('rules', _anchor='cell_value') }}"
+                                class="link"><span>Подробнее</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-md-6 col-xs-12">
+                    <div class="item-content">
+                        <div class="item-icon">
+                            <img src="/static/img/move.gif" alt="">
+                        </div>
+                        <div class="item-body">
+                            <h3>Везение</h3>
+                            <p>Клетка дарует вам еще один ход. Выбери правильное направление.</p>
+                        </div>
+                        <div class="item-footer">
+                            <a href="{{ url_for('rules', _anchor='cell_value') }}"
+                                class="link"><span>Подробнее</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-md-6 col-xs-12">
+                    <div class="item-content">
+                        <div class="item-icon">
+                            <img src="/static/img/trap.gif" alt="">
+                        </div>
+                        <div class="item-body">
+                            <h3>Неудача</h3>
+                            <p>К сожалению, на данной клетке содержится людоед. Вам необходимо будет спрятаться от него,
+                                поэтому вы
+                                пропустите ход.</p>
+                        </div>
+                        <div class="item-footer">
+                            <a href="{{ url_for('rules', _anchor='cell_value') }}"
+                                class="link"><span>Подробнее</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post-item col-xl-4 col-md-6 col-xs-12">
+                    <div class="item-content">
+                        <div class="item-icon">
+                            <img src="/static/img/gold.gif" alt="">
+                        </div>
+                        <div class="item-body">
+                            <h3>Добыча</h3>
+                            <p>Самая главная клетка этой игры. Если откроете её впервые получите золото.</p>
+                        </div>
+                        <div class="item-footer">
+                            <a href="{{ url_for('rules', _anchor='cell_value') }}"
+                                class="link"><span>Подробнее</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+{%block app_content %}
+<section id="start_game" class="start_game">
+    <div class="main_container">
+        <div class="cards-h2">
+            <h2>Начать игру</h2>
+        </div>
+        <form id="form_option" action="" method="post">
+            {{ form.csrf_token() }}
+            <div style="margin: 10px">
+                {{ form.count_of_player.label }}
+                {{ form.count_of_player }}
+                <br>
+                <div class="input-group flex-nowrap">
+                    {{ form.name1.label(class_="input-group-text") }}
+                    {{ form.name1(class_="form-control") }}
+                </div>
+                <br>
+                <div class="input-group flex-nowrap">
+                    {{ form.name2.label(class_="input-group-text") }}
+                    {{ form.name2(class_="form-control") }}
+                </div>
+                <br>
+                <div class="input-group flex-nowrap">
+                    {{ form.name3.label(class_="input-group-text") }}
+                    {{ form.name3(class_="form-control") }}
+                </div>
+                <br>
+                <div class="input-group flex-nowrap">
+                    {{ form.name4.label(class_="input-group-text") }}
+                    {{ form.name4(class_="form-control") }}
+                </div>
+            </div>
+
+            <div style="margin: 10px">{{ form.submit }}</div>
+        </form>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+{% endblock %}

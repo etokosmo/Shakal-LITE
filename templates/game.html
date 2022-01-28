@@ -1,0 +1,145 @@
+{%extends "base.html"%}
+
+
+{%block app_content %}
+
+<section id='gold_players'>
+
+  <div class="main_container">
+    <!-- Подсчет золота -->
+
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          {% for player in game.players_container %}
+          <th scope="col">Количество золота у {{ player.nickname }}:</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for player in game.players_container %}
+          <td>{{ player.gold }}</td>
+          {% endfor %}
+        </tr>
+
+      </tbody>
+
+    </table>
+    <!-- Кто выиграл -->
+    {% for player in game.players_container %}
+    {% if player.gold == 3 %}
+    <div class="alert alert-light turn_player{{player.name}}" role="alert">
+      <b style="font-size: large;">Победил игрок под именем {{ player.nickname }} </b>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+
+    <!-- Кто ходит -->
+    <div class="alert alert-light turn_player{{game.player_turn.name}}" role="alert">
+      Ход игрока {{ game.player_turn.nickname }}
+    </div>
+    <!-- Месседж о ходе -->
+    <div class="alert alert-primary" role="alert">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-square-fill"
+        viewBox="0 0 16 16">
+        <path
+          d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+      </svg>
+      {{ game.message }}
+    </div>
+    <!-- Игровое поле -->
+    <div>
+      <table class="">
+        {% for i in range(5) %}
+        <tr>
+          {% for j in range(5) %}
+          {% if game.game_field[i][j][3] == 'start' %}
+          <td class="cell number{{game.game_field[i][j][0]}}">
+            <div class="cell_in_table" style="padding: 5px">
+              <form action="/game/" method="POST">
+                <button class="{{game.game_field[i][j][1]}}" name="index" value="{{i}}{{j}}" {{ game.game_field[i][j][1]
+                  }}>
+                  <img src="/static/img/start.jpg" alt="">
+                </button>
+              </form>
+            </div>
+          </td>
+          {% elif game.game_field[i][j][2] %}
+          <td class="cell number{{game.game_field[i][j][0]}}">
+            <div class="cell_in_table" style="padding: 5px">
+
+              <form action="/game/" method="POST">
+                <button class="{{game.game_field[i][j][1]}}" name="index" value="{{i}}{{j}}" {{ game.game_field[i][j][1]
+                  }}>
+                  <img src="/static/img/{{game.game_field[i][j][3]}}.gif" alt="">
+                </button>
+              </form>
+            </div>
+          </td>
+          {% else %}
+          <td class="cell number{{game.game_field[i][j][0]}}">
+            <div class="cell_in_table" style="padding: 5px">
+              <form action="/game/" method="POST">
+                <button class="{{game.game_field[i][j][1]}}" name="index" value="{{i}}{{j}}" {{ game.game_field[i][j][1]
+                  }}>
+                  <img src="/static/img/closed.jpg" alt="">
+                </button>
+              </form>
+            </div>
+          </td>
+          {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <br>
+    <!-- История ходов -->
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            Открыть/Скрыть историю ходов
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <ul class="list-group"></ul>
+
+            {% for message in game.message_container %}
+            {% if loop.index == 1 %}
+            <li class="list-group-item active" aria-current="true">{{ game.message_container|length - loop.index + 1 }}.
+              {{
+              message }}</li>
+            {% else %}
+            <li class="list-group-item" aria-current="true">{{ game.message_container|length - loop.index + 1 }}. {{
+              message
+              }}</li>
+
+            {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script>
+let cords = ['scrollX','scrollY'];
+// Перед закрытием записываем в локалсторадж window.scrollX и window.scrollY как scrollX и scrollY
+window.addEventListener('unload', e => cords.forEach(cord => localStorage[cord] = window[cord]));
+// Прокручиваем страницу к scrollX и scrollY из localStorage (либо 0,0 если там еще ничего нет)
+let mass = [...cords.map(cord => localStorage[cord])];
+window.scroll({left:mass[0], top:mass[1], behavior: 'instant'});
+</script>
+{% endblock %}
