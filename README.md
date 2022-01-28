@@ -18,7 +18,7 @@
 ## Игра
 
 <p>Чтобы начать игру необходимо нажать на раздел в меню Play. Выбрать количество игроков (от 1 до 4). По желанию ввести им имена. И начать играть.</p>
-<img src="https://s487man.storage.yandex.net/rdisk/b62521e8f4c9765bdd53162d7ca5fc8db8c29a4a26c9e43f5ef24ca4bbaf6758/61f3321e/kSPXEZG5G4m4gDOb7Ow56RpnZGmK9wEE5tBkmoE7q0yfuO5xCX5pxHbXMIJieibNfA8tCx-6VZevkj_ls5fq1w==?uid=0&filename=game1.gif&disposition=inline&hash=&limit=0&content_type=image%2Fgif&owner_uid=0&fsize=54342532&hid=95b82d6a503c362b4038b9a63446872f&media_type=image&tknv=v2&etag=c1c776f0866219b2b97bc9d013ef9cf0&rtoken=mhKZcRLokct0&force_default=no&ycrid=na-aa63a30a8fe3170ff49e74a075040a16-downloader16f&ts=5d6991f7a4380&s=21b4718575047c2a28979c994f67433b564f467e5f801f2e66b8ab115bc8d419&pb=U2FsdGVkX1-5QncpaSv8W2tyUFC-2900IVxS_IyOYb11rA2XB4znyK5g3kY4Qlc0gsLH-zg0NSv159IjYcat4HExW9QrfyySgysUM7bOeYk" width="100%">
+<img src="https://github.com/etokosmo/Shakal-LITE/blob/main/static/img/readme/game1.gif" width="100%">
 
 ## Технологии в проекте
 
